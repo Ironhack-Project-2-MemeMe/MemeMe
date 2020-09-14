@@ -1,0 +1,23 @@
+body {
+  background-color: black;
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+h1 {
+  color: white; }
+
+a {
+  text-decoration: none;
+  color: white; }
+
+nav {
+  background-color: #04473d; }
+
+.button-wrapper {
+  padding-top: 3em;
+  padding-bottom: 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+/*# sourceMappingURL=style.css.map */

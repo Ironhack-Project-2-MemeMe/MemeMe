@@ -1,2 +1,35 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<section class="nav-wrapper">
+  <nav>
+    <div class="logoWrapper">
+      <h1>MemeMe</h1>
+
+      <img src="../images/Frame 12.png" alt="">
+    </div>
+    <input type="text">
+    <a href="">LOG IN</a>
+    <a href="">SIGN UP</a>
+  </nav>
+  <header>
+    <img src="../images/background-meme.png" alt="">
+  </header>
+</section>
+
+<section class="img-wrapper">
+  {{#each imgList}}
+  <div>
+    <img src="" alt="">
+
+  </div>
+  {{/each}}
+  <div class="button-wrapper">
+    <button class="see-more">SEE MORE</button>
+  </div>
+</section>
+<section class="footer-wrapper">
+  <footer>
+    <a href="">(c)2020 MEMEME</a>
+    <a href="">ABOUT</a>
+    <a href="">PRIVACY</a>
+    <a href="">TERMS</a>
+  </footer>
+</section>
