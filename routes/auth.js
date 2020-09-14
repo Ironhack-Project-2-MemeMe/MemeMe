@@ -13,21 +13,34 @@ router.get('/signup', (req, res, next) => {
 
 router.post('/signup', (req, res, next) => {
 
-  const { username, password } = req.body;
+  const { username, email, password } = req.body;
+
+  let message = '';
 
   if (password.length < 8) {
-    res.render('auth/signup', { message: 'Your password needs to be 8 chars min' });
-    return;
+    message = 'Your password needs to be 8 chars min';
   }
   if (username === '') {
-    res.render('auth/signup', { message: 'Your username cannot be empty' });
-    return;
+    message = 'Your username cannot be empty'; 
   }
+  if(email === ''){
+    message = 'Your email cannot be empty';
+  }
+  
+
+  // if(!username || !email){
+  //   res.render('auth/signup', 
+  //   { message: 'All fields are mandatory. Please provide your username, email and password' });
+  //   return;
+  // }
+
+
   // check if username exists in database -> show message
+if (!message){
   User.findOne({ username: username })
     .then(found => {
       if (found !== null) {
-        res.render('auth/signup', { message: 'This username is already taken' });
+        res.render('auth/signup', { username, email, message: 'This username is already taken' });
       } else {
         // hash the password, create the user and redirect to profile page
         const salt = bcrypt.genSaltSync();
@@ -35,6 +48,7 @@ router.post('/signup', (req, res, next) => {
 
         User.create({
           username: username,
+          email: email,
           password: hash
         })
           .then(dbUser => {
@@ -43,8 +57,18 @@ router.post('/signup', (req, res, next) => {
             // login with passport:
             // req.login();
             res.redirect('/login');
+          })
+          .catch(err => {
+            console.log(err);
+            res.render('auth/signup', { username, email, message: 'Please enter a valid email address.' });
           });
       }
     });
+  } else {
+    res.render('auth/signup', { username, email, message});
+  }
 });
+
+
+
 module.exports = router;
