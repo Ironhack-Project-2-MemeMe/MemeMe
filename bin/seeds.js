@@ -1,15 +1,15 @@
  
 const mongoose = require("mongoose");
-const Meme = require('../models/Meme')
-const User = require('../models/User')
+const Meme = require('../models/Meme');
+const User = require('../models/User');
 
 mongoose.connect('mongodb://localhost/mememe', {useNewUrlParser: true, useUnifiedTopology: true})
 .then(()=>{
-  console.log('mongo connected')
+  console.log('mongo connected');
 })
 .catch(error=>{
-  console.log('error', error)
-})
+  console.log('error', error);
+});
 
 const memems = [{
 title: 'Dog-Meme',
@@ -21,12 +21,12 @@ user: {
 },
 imgName:'dog',
 imgPath: 'https://res.cloudinary.com/dhmv8utor/image/upload/v1600081644/download_gkmwj6.jpg'
-}]
+}];
 
 memems.forEach(meme=>{
 User.create(meme.user).then(dbUser=>{
-meme.user =dbUser._id
-Meme.create(meme)
-})
-})
+meme.user =dbUser._id;
+Meme.create(meme);
+});
+});
  
