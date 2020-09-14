@@ -1,5 +1,5 @@
 body {
- 
+ color: white;
   background-color: black;
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -20,4 +20,20 @@ nav {
    display: flex;
    justify-content: center;
    align-items: center;
+ }
+ #addWrapper{
+  padding-top: 3em;
+  padding-bottom: 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
+ .logo-add{ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
+ .back-arrow img{
+   width: 20px;
+   padding-right: 3px;;
  }

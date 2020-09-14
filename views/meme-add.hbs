@@ -1,1 +1,36 @@
-<h1>Bla</h1>
+<section class="back-arrow">
+  <img src="../images/arrow.png" alt="">
+  <a href="/">Back to home</a>
+</section>
+
+<div class="logo-add">
+
+  <h1>MemeMe</h1>
+
+  <img src="../images/Frame 12.png" alt="">
+</div>
+
+
+<div id="addWrapper">
+  <form action="/meme/add" method="POST" enctype="multipart/form-data">
+
+    <input type="text" name="title" id="title" placeholder="Title: ">
+    <input type="text" name="description" id="description" placeholder="Description">
+
+    <input type="file" name="image" id="img" style="display:none;" />
+    <label for="img">Upload your Meme</label>
+    <p>OR</p>
+    <input type="url" name="imageUrl" id="image" placeholder="Paste Image URL">
+    <button type="submit">Add the Meme</button>
+  </form>
+</div>
+
+
+<section class="footer-wrapper">
+  <footer>
+    <a href="">(c)2020 MEMEME</a>
+    <a href="">ABOUT</a>
+    <a href="">PRIVACY</a>
+    <a href="">TERMS</a>
+  </footer>
+</section>
