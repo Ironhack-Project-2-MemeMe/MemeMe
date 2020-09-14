@@ -11,7 +11,7 @@ cloudinary.config({
 const storage = new cloudinaryStorage({
   // cloudinary: cloudinary,
   cloudinary,
-  folder: "folder-name", // The name of the folder in cloudinary
+  folder: "meme", // The name of the folder in cloudinary
   allowedFormats: ["jpg", "png"],
   // params: { resource_type: 'raw' }, => this is in case you want to upload other type of files, not just images
   filename: function (req, file, cb) {
@@ -20,6 +20,6 @@ const storage = new cloudinaryStorage({
 });
 
 //                        storage: storage
-const uploader = multer({ storage });
+const fileUploader = multer({ storage });
 
-module.exports = { uploader, cloudinary };
+module.exports = { fileUploader, cloudinary };

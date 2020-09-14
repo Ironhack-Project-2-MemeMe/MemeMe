@@ -7,7 +7,11 @@
     </div>
     <input type="text">
     <a href="">LOG IN</a>
+ 
     <a href="/signup">SIGN UP</a>
+
+      
+    <a href="/meme/add">Add a meme</a>
   </nav>
   <header>
     <img src="../images/background-meme.png" alt="">
@@ -16,10 +20,11 @@
 
 <section class="img-wrapper">
   {{#each imgList}}
-  <div>
-    <img src="" alt="">
+    <div>
+      <h1>{{this.title}}</h1>
+      <img src="{{this.imgPath}}" alt="">
 
-  </div>
+    </div>
   {{/each}}
   <div class="button-wrapper">
     <button class="see-more">SEE MORE</button>
