@@ -12,8 +12,21 @@ mongoose.connect('mongodb://localhost/mememe', {useNewUrlParser: true, useUnifie
 })
 
 const memems = [{
-title: '' ,
-description: '',
-artist= {},
-imgPath: ''
+title: 'Dog-Meme',
+description: 'this is a cute dog',
+user: {
+  username: 'username',
+  password: 'password',
+  role: 'user'
+},
+imgName:'dog',
+imgPath: 'https://res.cloudinary.com/dhmv8utor/image/upload/v1600081644/download_gkmwj6.jpg'
 }]
+
+memems.forEach(meme=>{
+User.create(meme.user).then(dbUser=>{
+meme.user =dbUser._id
+Meme.create(meme)
+})
+})
+ 
