@@ -1,9 +1,37 @@
- 
+<section class="back-arrow">
+  <img src="../images/arrow.png" alt="">
+  <a href="/">Back to home</a>
+</section>
+
 {{#each memes}}
 <div>
   <h1>{{this.title}}</h1>
-   <img src=" {{this.imgPath}}" alt=""> 
+  <img src=" {{this.imgPath}}" alt="">
 </div>
+{{/each}}
+<div class="share">
+<label>Share on  </label>
+<img src="../images/fb.png" alt="Facebook"  >
+<img src="../images/insta.png" alt="Instagram" >
+
+</div>
+{{!-- List the reviews
+<h2>Comments: </h2>
+{{#if meme.comment}}
+
+{{#each meme.comment}}
+<p>{{comments}}</p>
 
 {{/each}}
 
+{{else}}
+<p>No comments yet 😕</p>
+{{/if}}
+{{!-- Add a review --}}
+<p>Add your comment</p>
+<form action="/meme/{{meme._id}}/comments" method="POST">
+  <label for="comments">Comments:</label>
+  <textarea type="text" name="comments" id="comments"></textarea>
+
+  <button type="submit">ADD</button>
+</form> --}}
