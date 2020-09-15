@@ -54,5 +54,41 @@ router.post("/meme/add", fileUploader.single("image"), (req, res, next) => {
     });
 });
 
+//DELETE ==> Diana
+// router.get("/meme/delete/:memeId", (req, res) => {
+//   const id = req.params.memeId;
+//   Meme.findByIdAndDelete(id)
+//     .then(() => {
+//       res.redirect("/profile");
+//     })
+//     .catch((error) => {
+//       console.log(error);
+//     });
+// });
+
+
+
+//COMMENTS ==> Daniela
+// router.post("/memes/:memeId/comments", (req, res, next) => {
+ 
+//   const { user, comments } = req.body; 
+  
+//   Meme.update({_id:req.params.memeId}, {
+//     $push: {
+//       comment: {   
+//         user: user,
+//         comments: comments,
+//       },
+//     },
+//   })
+//     .then((meme) => {
+//       res.redirect('/meme');
+//     })
+//     .catch((error) => {
+//       next(error);
+//     });
+// });
+
+ 
 
 module.exports = router;
