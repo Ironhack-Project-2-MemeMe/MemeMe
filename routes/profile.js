@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { loginCheck } = require('./middleware');
+const { loggedInOnly } = require('./middleware');
 const Meme = require("../models/Meme.js");
 
-router.get('/profile', loginCheck, (req, res, next) => {
+router.get('/profile', loggedInOnly, (req, res, next) => {
     const {_id, username, email, role } = req.mememeUser;
 
     Meme.find({user: _id})

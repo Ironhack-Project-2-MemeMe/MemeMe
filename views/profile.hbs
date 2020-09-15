@@ -12,7 +12,9 @@
     <div>
       <h1>{{this.title}}</h1>
      <a href="/meme/{{_id}}"><img src="{{this.imgPath}}" width="200" alt=""> </a> 
-
+      <form action="/meme/{{_id}}/delete" method="POST">
+        <button type="submit">DELETE THIS MEME 😭</button>
+      </form>
     </div>
   {{/each}}
 

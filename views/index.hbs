@@ -6,13 +6,18 @@
       <img src="../images/Frame 12.png" alt="">
     </div>
     <input type="text">
+
+    {{#unless isLoggedIn}}
     <a href="/login">LOG IN</a>
  
     <a href="/signup">SIGN UP</a>
-
+    {{/unless}}
       
+    {{#if isLoggedIn}}
     <a href="/meme/add">Add a meme</a>
-    <a href="/profile">Profile</a>
+    <a href="/profile">Profile {{username}}</a>
+    {{/if}}
+   
   </nav>
   <header>
     <img src="../images/background-meme.png" alt="">
