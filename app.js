@@ -54,7 +54,7 @@ const MongoStore = require('connect-mongo')(session);
 
 app.use(
   session({
-    secret: process.env.SESSION_SECRET,
+    secret: "sdadasdasdasd",
     cookie: { maxAge: 24 * 60 * 60 * 1000 },
     saveUninitialized: false,
     resave: true,
@@ -122,6 +122,9 @@ app.use('/', index);
 const auth = require('./routes/auth');
 app.use('/', auth);
 
+const memes = require('./routes/memes')
+app.use('/', memes)
 
-
+const profile = require('./routes/profile')
+app.use('/', profile)
 module.exports = app;

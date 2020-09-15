@@ -12,6 +12,7 @@
 
       
     <a href="/meme/add">Add a meme</a>
+    <a href="/profile">Profile</a>
   </nav>
   <header>
     <img src="../images/background-meme.png" alt="">
@@ -22,7 +23,7 @@
   {{#each imgList}}
     <div>
       <h1>{{this.title}}</h1>
-      <img src="{{this.imgPath}}" alt="">
+     <a href="/meme/{{_id}}"><img src="{{this.imgPath}}" alt=""> </a> 
 
     </div>
   {{/each}}
