@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const { loggedInOnly } = require('./middleware');
 const { fileUploader, cloudinary } = require("../config/cloudinary.config.js");
 const Meme = require("../models/Meme.js");
 const User = require('../models/User')
@@ -20,6 +21,7 @@ router.get("/meme/:memeId", (req, res) => {
   Meme.findById(id)
     .populate("user")
     .then((memefromDb) => {
+      console.log("memefromDb ====================>",memefromDb)
      
       res.render('meme', {memes: memefromDb});
     });
@@ -54,40 +56,42 @@ router.post("/meme/add", fileUploader.single("image"), (req, res, next) => {
     });
 });
 
-//DELETE ==> Diana
-// router.get("/meme/delete/:memeId", (req, res) => {
-//   const id = req.params.memeId;
-//   Meme.findByIdAndDelete(id)
-//     .then(() => {
-//       res.redirect("/profile");
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//     });
-// });
+// DELETE ==> Diana
+router.get("/meme/delete/:memeId", (req, res) => {
+  const id = req.params.memeId;
+  Meme.findByIdAndDelete(id)
+    .then(() => {
+      res.redirect("/profile");
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
 
 
 
-//COMMENTS ==> Daniela
-// router.post("/memes/:memeId/comments", (req, res, next) => {
+// COMMENTS ==> Daniela
+router.post("/meme/:memeId/reviews", (req, res, next) => {
  
-//   const { user, comments } = req.body; 
+  const { user, comments } = req.body; 
+
   
-//   Meme.update({_id:req.params.memeId}, {
-//     $push: {
-//       comment: {   
-//         user: user,
-//         comments: comments,
-//       },
-//     },
-//   })
-//     .then((meme) => {
-//       res.redirect('/meme');
-//     })
-//     .catch((error) => {
-//       next(error);
-//     });
-// });
+  Meme.findByIdAndUpdate({_id:req.params.memeId}, {
+    $push: {
+      reviews: {   
+        user: user,
+        comments: comments,
+      },
+    },
+  })
+    .then((meme) => {
+      console.log("successs==============>",meme)
+      res.redirect(`/meme/${meme._id}`);
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
 
  
 
