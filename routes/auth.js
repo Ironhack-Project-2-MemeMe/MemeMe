@@ -9,6 +9,9 @@ router.get('/signup', (req, res, next) => {
   res.render('auth/signup');
 });
 
+router.get('/login', (req, res, next) => {
+  res.render('auth/login');
+});
 
 
 router.post('/signup', (req, res, next) => {
@@ -69,6 +72,19 @@ if (!message){
   }
 });
 
+router.post(
+  '/login',
+  passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/login',
+    passReqToCallback: true
+  })
+);
 
+router.get('/logout', (req, res) => {
+  // logout the user using passport
+  req.logout();
+  res.redirect('/');
+});
 
 module.exports = router;

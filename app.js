@@ -123,8 +123,8 @@ const auth = require('./routes/auth');
 app.use('/', auth);
 
 const memes = require('./routes/memes')
-app.use('/', memes)
+app.use('/', memes);
 
-const profile = require('./routes/profile')
-app.use('/', profile)
+const profile = require('./routes/profile');
+app.use('/', profile);
 module.exports = app;
