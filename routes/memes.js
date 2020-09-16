@@ -20,8 +20,6 @@ router.get("/meme/:memeId", (req, res) => {
   Meme.findById(id)
     .populate("user")
     .then((memefromDb) => {
-      console.log("memefromDb ====================>",memefromDb);
-     
       res.render('meme', {memes: memefromDb});
     });
 });
@@ -31,9 +29,6 @@ router.get("/meme/random/:numberOfMemes", (req, res) => {
   Meme.find()
     .limit(numberOfMemes)
     .then((memesfromDb) => {
-      for (const memefromDb of memesfromDb) {
-        console.log("memefromDb ====================>",memefromDb)
-      }
       res.render('meme-list', {layout: false, imgList: memesfromDb});
     });
 });
