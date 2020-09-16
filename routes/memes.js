@@ -1,10 +1,9 @@
 const express = require("express");
 const router = express.Router();
-
+const { loggedInOnly } = require("./middleware");
 const { fileUploader, cloudinary } = require("../config/cloudinary.config.js");
 const Meme = require("../models/Meme.js");
-const User = require("../models/User.js");
-const { loggedInOnly } = require("./middleware");
+const User = require("../models/User");
 
 router.get("/meme", (req, res) => {
   Meme.find().then((memefromDb) => {
@@ -21,9 +20,27 @@ router.get("/meme/:memeId", (req, res) => {
   Meme.findById(id)
     .populate("user")
     .then((memefromDb) => {
-      console.log("memefromDb", memefromDb);
+      let totalRate = 0;
+      console.log("memefromDb ====================>", memefromDb.ratings);
+      memefromDb.ratings.forEach((rate) => {
+        totalRate += parseInt(rate.rating);
+      });
+      let avrageRate = parseInt(totalRate / memefromDb.ratings.length);
+      console.log("avrageRate============>", avrageRate);
+      let emptyRating = memefromDb.ratings.length === 0 ? true : false;
+      res.render("meme", { memes: memefromDb, avrageRate, emptyRating });
+    });
+});
 
-      res.render("meme", { memes: memefromDb });
+router.get("/meme/random/:numberOfMemes", (req, res) => {
+  const numberOfMemes = parseInt(req.params.numberOfMemes);
+  Meme.find()
+    .limit(numberOfMemes)
+    .then((memesfromDb) => {
+      for (const memefromDb of memesfromDb) {
+        console.log("memefromDb ====================>", memefromDb);
+      }
+      res.render("meme-list", { layout: false, imgList: memesfromDb });
     });
 });
 
@@ -47,7 +64,7 @@ router.post(
 
     const imgName = req.file ? req.file.originalname : title;
     const imgPath = req.file ? req.file.url : req.body.imageUrl;
-    const imgPublicId = req.file ? req.file.public_id : "xxxx";
+    const imgPublicId = req.file ? req.file.public_id : "1";
     const userId = req.mememeUser._id;
 
     Meme.create({
@@ -120,14 +137,16 @@ router.post("/meme/:memeId/reviews", loggedInOnly, (req, res, next) => {
     });
 });
 
-router.post("/meme/:memeId/rating", (req, res, next) => {
-  const { user, rating } = req.body;
+router.post("/meme/:memeId/rating", loggedInOnly, (req, res, next) => {
+  const { user, rate } = req.body;
+  console.log("rate========>", rate);
   Meme.findByIdAndUpdate(
     { _id: req.params.memeId },
     {
       $push: {
-        rating: {
-          rating: rating,
+        ratings: {
+          user: user,
+          rating: rate,
         },
       },
     }

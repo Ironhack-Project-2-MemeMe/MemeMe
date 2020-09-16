@@ -30,14 +30,6 @@ router.post('/signup', (req, res, next) => {
     message = 'Your email cannot be empty';
   }
   
-
-  // if(!username || !email){
-  //   res.render('auth/signup', 
-  //   { message: 'All fields are mandatory. Please provide your username, email and password' });
-  //   return;
-  // }
-
-
   // check if username exists in database -> show message
 if (!message){
   User.findOne({ username: username })
@@ -56,9 +48,7 @@ if (!message){
         })
           .then(dbUser => {
             // log the user in
-            // res.render('dashboard', { user: dbUser });
-            // login with passport:
-            // req.login();
+            
             res.redirect('/login');
           })
           .catch(err => {
