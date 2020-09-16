@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const { loggedInOnly } = require('./middleware');
 const { fileUploader, cloudinary } = require("../config/cloudinary.config.js");
 const Meme = require("../models/Meme.js");
 const User = require('../models/User')
@@ -20,6 +21,7 @@ router.get("/meme/:memeId", (req, res) => {
   Meme.findById(id)
     .populate("user")
     .then((memefromDb) => {
+      console.log("memefromDb ====================>",memefromDb)
      
       res.render('meme', {memes: memefromDb});
     });
@@ -76,7 +78,7 @@ router.post("/meme/:memeId/delete", loggedInOnly, (req, res, next) => {
     console.log(err);
     next(err);
   });
-});
+
 
 
 
@@ -95,6 +97,7 @@ router.post("/meme/:memeId/reviews", loggedInOnly, (req, res, next) => {
     }
   )
     .then((meme) => {
+
       res.redirect(`/meme/${meme._id}`);
     })
     .catch((error) => {

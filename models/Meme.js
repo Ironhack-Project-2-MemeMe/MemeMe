@@ -19,7 +19,6 @@ const memeSchema = new Schema({
   ],
    
   rating: [Number],
- 
   imgName: String,
   imgPath: String,
   imgPublicId: String,
