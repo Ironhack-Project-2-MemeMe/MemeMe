@@ -1,41 +1,45 @@
+<script>
+  window.onresize = () => { waterfall('.imgList'); };
+  window.onload = () => { waterfall('.imgList'); };
+</script>
 <section class="nav-wrapper">
   <nav>
     <div class="logoWrapper">
-      <h1>MemeMe</h1>
 
-      <img src="../images/Frame 12.png" alt="">
+      <img src="../images/Frame 12.png" alt="Logo">
+      <img src="../images/MemeMe.png" alt="Logo-name">
     </div>
-
-
+    <div class="search-field">
+    <input class="form-control" type="text" placeholder="Search Me">
+    </div>
+    <div>
     {{#unless isLoggedIn}}
-    <a href="/login">LOG IN</a>
-
-    <a href="/signup">SIGN UP</a>
+     <a class="btn btn-outline-secondary" href="/login">LOG IN</a>
+     <a class="btn btn-secondary" href="/signup">SIGN UP</a>
     {{/unless}}
-
     {{#if isLoggedIn}}
-    <a href="/meme/add">Add a meme</a>
-    <a href="/profile">Profile</a>
+    <a class="btn btn-outline-secondary" href="/meme/add">Add a meme</a>
+    <a class="btn btn-secondary" href="/profile">Profile {{username}}</a>
     {{/if}}
+   </div>
 
   </nav>
   <header>
-    <img src="../images/background-meme.png" alt="">
+    <img class="background-img" src="../images/background-meme.png" alt="">
   </header>
 </section>
 
 <section class="img-wrapper">
-  <div id="imgList">
+  
+  <div class="imgList">
     {{#each imgList}}
-    <div>
-      <h1>{{this.title}}</h1>
-      <a href="/meme/{{_id}}"><img width="600" src="{{this.imgPath}}" alt="{{this.title}}"> </a>
-
-    </div>
+      <div class="card item" style="width: 500px">
+        <a href="/meme/{{_id}}">
+        <img class="card-img-top" width="400" src="{{this.imgPath}}" alt="{{this.title}}"> 
+        </a> 
+        <h4>{{this.title}}</h4>
+      </div>
     {{/each}}
-  </div>
-  <div class="button-wrapper">
-    <button class="see-more">SEE MORE</button>
   </div>
 </section>
 <section class="footer-wrapper">

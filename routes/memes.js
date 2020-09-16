@@ -21,12 +21,10 @@ router.get("/meme/:memeId", (req, res) => {
     .populate("user")
     .then((memefromDb) => {
       let totalRate = 0;
-      console.log("memefromDb ====================>", memefromDb.ratings);
       memefromDb.ratings.forEach((rate) => {
         totalRate += parseInt(rate.rating);
       });
       let avrageRate = parseInt(totalRate / memefromDb.ratings.length);
-      console.log("avrageRate============>", avrageRate);
       let emptyRating = memefromDb.ratings.length === 0 ? true : false;
       res.render("meme", { memes: memefromDb, avrageRate, emptyRating });
     });
@@ -37,9 +35,6 @@ router.get("/meme/random/:numberOfMemes", (req, res) => {
   Meme.find()
     .limit(numberOfMemes)
     .then((memesfromDb) => {
-      for (const memefromDb of memesfromDb) {
-        console.log("memefromDb ====================>", memefromDb);
-      }
       res.render("meme-list", { layout: false, imgList: memesfromDb });
     });
 });
@@ -80,18 +75,8 @@ router.post(
       })
       .catch((err) => {
         next(err);
-      })
-    })
-//     } else {
-//       console.log('User ', req.mememeUser._id, ' trying to delete unowned meme ', meme._id, ' owned by ', meme.user);
-//       res.redirect("/profile");
-//     }
-//   }).catch((err)=>{
-//     console.log(err);
-//     next(err);
-//   });
-// });
-
+      });
+    });
 
 
 router.post("/meme/:memeId/delete", loggedInOnly, (req, res, next) => {

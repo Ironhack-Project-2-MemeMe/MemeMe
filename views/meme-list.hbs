@@ -1,6 +1,8 @@
 {{#each imgList}}
-<div>
-<h1>{{this.title}}</h1>
-<a href="/meme/{{_id}}"><img width="600" src="{{this.imgPath}}" alt= "{{this.title}}"</a>
+<div class="card item" style="width: 500px">
+  <a href="/meme/{{_id}}">
+  <img class="card-img-top" width="400" src="{{this.imgPath}}" alt="{{this.title}}"> 
+  </a> 
+  <h4>{{this.title}}</h4>
 </div>
 {{/each}}
