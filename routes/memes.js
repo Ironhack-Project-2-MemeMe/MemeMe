@@ -80,26 +80,27 @@ router.post("/meme/:memeId/delete", loggedInOnly, (req, res, next) => {
 
 
 
-//COMMENTS ==> Daniela
-// router.post("/memes/:memeId/comments", (req, res, next) => {
  
-//   const { user, comments } = req.body; 
-  
-//   Meme.update({_id:req.params.memeId}, {
-//     $push: {
-//       comment: {   
-//         user: user,
-//         comments: comments,
-//       },
-//     },
-//   })
-//     .then((meme) => {
-//       res.redirect('/meme');
-//     })
-//     .catch((error) => {
-//       next(error);
-//     });
-// });
+router.post("/meme/:memeId/reviews", loggedInOnly, (req, res, next) => {
+  const { user, comments } = req.body;
+  Meme.findByIdAndUpdate(
+    { _id: req.params.memeId },
+    {
+      $push: {
+        reviews: {
+          user: user,
+          comments: comments,
+        },
+      },
+    }
+  )
+    .then((meme) => {
+      res.redirect(`/meme/${meme._id}`);
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
 
  
 

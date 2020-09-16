@@ -8,11 +8,16 @@ const Meme = require("../models/Meme.js");
 router.get("/", loggedInMaybe, (req, res, next) => {
   Meme.find()
     .then((memes) => {
-      res.render("index", { imgList: memes, isLoggedIn: req.mememeIsUserLoggedIn, username: req.mememeUser.username });
+        if(req.mememeIsUserLoggedIn) {
+          res.render("index", { imgList: memes, isLoggedIn: req.mememeIsUserLoggedIn, username: req.mememeUser.username });
+        } else {
+          res.render("index", { imgList: memes, isLoggedIn: req.mememeIsUserLoggedIn });
+        }
     })
     .catch((error) => {
       console.log("error is happening while getting the memes data", error);
     });
 });
+
 
 module.exports = router;
