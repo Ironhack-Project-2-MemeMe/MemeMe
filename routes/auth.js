@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 const passport = require('passport');
 
 
+
 router.get('/signup', (req, res, next) => {
   res.render('auth/signup');
 });
@@ -12,7 +13,6 @@ router.get('/signup', (req, res, next) => {
 router.get('/login', (req, res, next) => {
   res.render('auth/login');
 });
-
 
 router.post('/signup', (req, res, next) => {
 
@@ -72,14 +72,16 @@ if (!message){
   }
 });
 
-router.post(
-  '/login',
-  passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/login',
-    passReqToCallback: true
-  })
-);
+ router.post('/login',(req, res, next) => { 
+    passport.authenticate('local', function(err, user, info) { 
+      if (err) { return next(err); }
+      if (!user) { return res.render('auth/login', { message: 'Invalid credentials'}); }
+      req.logIn(user, function(err) {
+        if (err) { return next(err); }
+        return res.redirect('/profile');
+      });
+    })(req, res, next);
+  });
 
 router.get('/logout', (req, res) => {
   // logout the user using passport

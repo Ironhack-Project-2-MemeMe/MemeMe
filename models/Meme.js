@@ -7,6 +7,7 @@ const memeSchema = new Schema({
   title: String,
   description: String,
   user: {
+    required: [true, 'User is required.'],
     type: Schema.Types.ObjectId,
     ref: "User",
   },
