@@ -80,9 +80,19 @@ router.post(
       })
       .catch((err) => {
         next(err);
-      });
-  }
-);
+      })
+    })
+//     } else {
+//       console.log('User ', req.mememeUser._id, ' trying to delete unowned meme ', meme._id, ' owned by ', meme.user);
+//       res.redirect("/profile");
+//     }
+//   }).catch((err)=>{
+//     console.log(err);
+//     next(err);
+//   });
+// });
+
+
 
 router.post("/meme/:memeId/delete", loggedInOnly, (req, res, next) => {
   const id = req.params.memeId;
