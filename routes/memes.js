@@ -34,8 +34,7 @@ router.get("/meme/random/:numberOfMemes", (req, res) => {
       for (const memefromDb of memesfromDb) {
         console.log("memefromDb ====================>",memefromDb)
       }
-     
-      res.render('meme', {memes: memesfromDb});
+      res.render('meme-list', {layout: false, imgList: memesfromDb});
     });
 });
 
