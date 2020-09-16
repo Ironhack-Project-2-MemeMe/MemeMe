@@ -11,6 +11,13 @@ const memeSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
+  reviews: [
+    {
+      user: String,
+      comments: String
+    }
+  ],
+  rating: Number,
   imgName: String,
   imgPath: String,
   imgPublicId: String,
