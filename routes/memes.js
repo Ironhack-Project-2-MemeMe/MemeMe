@@ -3,8 +3,8 @@ const router = express.Router();
 const { loggedInOnly } = require('./middleware');
 const { fileUploader, cloudinary } = require("../config/cloudinary.config.js");
 const Meme = require("../models/Meme.js");
-const User = require('../models/User')
-const { loggedInOnly } = require('./middleware');
+const User = require('../models/User');
+// const { loggedInOnly } = require('./middleware');
 
 router.get("/meme", (req, res) => { 
   Meme.find().then((memefromDb) => {
@@ -24,6 +24,19 @@ router.get("/meme/:memeId", (req, res) => {
       console.log("memefromDb ====================>",memefromDb)
      
       res.render('meme', {memes: memefromDb});
+    });
+});
+
+router.get("/meme/random/:numberOfMemes", (req, res) => {
+  const numberOfMemes = parseInt(req.params.numberOfMemes);
+  Meme.find()
+    .limit(numberOfMemes)
+    .then((memesfromDb) => {
+      for (const memefromDb of memesfromDb) {
+        console.log("memefromDb ====================>",memefromDb)
+      }
+     
+      res.render('meme', {memes: memesfromDb});
     });
 });
 
@@ -78,6 +91,7 @@ router.post("/meme/:memeId/delete", loggedInOnly, (req, res, next) => {
     console.log(err);
     next(err);
   });
+});
 
 
 
