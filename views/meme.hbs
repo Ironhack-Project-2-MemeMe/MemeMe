@@ -16,13 +16,15 @@
   </a>
 
 </div>
-
+ 
 <h2>Comments: </h2>
 {{#if memes.reviews}}
 
 {{#each memes.reviews}}
+<h4>{{user}} commented:</h4>
 <p>{{this.comments}}</p>
-
+ 
+ 
 {{/each}}
 
 {{else}}
@@ -31,8 +33,10 @@
 
 <p>Add your comment</p>
 <form action="/meme/{{memes._id}}/reviews" method="POST">
+  <label for="user"> Username: </label>
+  <input type="text" name="user" id="user">
   <label for="comments">Comments:</label>
   <textarea type="text" name="comments" id="comments"></textarea>
 
   <button type="submit">ADD</button>
-</form>
+ 

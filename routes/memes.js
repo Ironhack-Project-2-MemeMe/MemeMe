@@ -3,11 +3,10 @@ const router = express.Router();
 
 const { fileUploader, cloudinary } = require("../config/cloudinary.config.js");
 const Meme = require("../models/Meme.js");
-const User = require('../models/User.js')
-const { loggedInOnly } = require('./middleware');
+const User = require("../models/User.js");
+const { loggedInOnly } = require("./middleware");
 
-
-router.get("/meme", (req, res) => { 
+router.get("/meme", (req, res) => {
   Meme.find().then((memefromDb) => {
     res.render("meme", { memes: memefromDb });
   });
@@ -22,78 +21,98 @@ router.get("/meme/:memeId", (req, res) => {
   Meme.findById(id)
     .populate("user")
     .then((memefromDb) => {
-      console.log("memefromDb",memefromDb)
-     
-      res.render('meme', {memes: memefromDb});
+      console.log("memefromDb", memefromDb);
+
+      res.render("meme", { memes: memefromDb });
     });
 });
-
 
 router.post("/meme", (req, res) => {
   const { title, description, imageUrl } = req.body;
   Meme.create({ title, description, imgName, imgPath, imgPublicId })
-  .then((meme) => {
-    res.redirect(`/meme/${meme._id}`);
-  })
-  .catch((err) => {
-    next(err);
-  });
-});
- 
-
-router.post("/meme/add", loggedInOnly, fileUploader.single("image"), (req, res, next) => {
-  const { title, description, imageUrl } = req.body;
-
-  const imgName = req.file ? req.file.originalname : title;
-  const imgPath = req.file ? req.file.url : req.body.imageUrl;
-  const imgPublicId = req.file ? req.file.public_id : "xxxx";
-  const userId = req.mememeUser._id;
-
-  Meme.create({ user: userId, title, description, imgName, imgPath, imgPublicId })
     .then((meme) => {
-      res.redirect("/");
+      res.redirect(`/meme/${meme._id}`);
     })
     .catch((err) => {
       next(err);
     });
 });
 
+router.post(
+  "/meme/add",
+  loggedInOnly,
+  fileUploader.single("image"),
+  (req, res, next) => {
+    const { title, description, imageUrl } = req.body;
+
+    const imgName = req.file ? req.file.originalname : title;
+    const imgPath = req.file ? req.file.url : req.body.imageUrl;
+    const imgPublicId = req.file ? req.file.public_id : "xxxx";
+    const userId = req.mememeUser._id;
+
+    Meme.create({
+      user: userId,
+      title,
+      description,
+      imgName,
+      imgPath,
+      imgPublicId,
+    })
+      .then((meme) => {
+        res.redirect("/");
+      })
+      .catch((err) => {
+        next(err);
+      });
+  }
+);
+
 router.post("/meme/:memeId/delete", loggedInOnly, (req, res, next) => {
   const id = req.params.memeId;
-  Meme.findById(id).then((meme) => {
-    if(meme.user.equals(req.mememeUser._id)) {
-      console.log('User ', req.mememeUser._id, ' deleting meme ', meme._id);
-      Meme.findByIdAndDelete(id)
-      .then(() => {
+  Meme.findById(id)
+    .then((meme) => {
+      if (meme.user.equals(req.mememeUser._id)) {
+        console.log("User ", req.mememeUser._id, " deleting meme ", meme._id);
+        Meme.findByIdAndDelete(id)
+          .then(() => {
+            res.redirect("/profile");
+          })
+          .catch((error) => {
+            console.log(error);
+            next(error);
+          });
+      } else {
+        console.log(
+          "User ",
+          req.mememeUser._id,
+          " trying to delete unowned meme ",
+          meme._id,
+          " owned by ",
+          meme.user
+        );
         res.redirect("/profile");
-      })
-      .catch((error) => {
-        console.log(error);
-        next(error);
-      });
-    } else {
-      console.log('User ', req.mememeUser._id, ' trying to delete unowned meme ', meme._id, ' owned by ', meme.user);
-      res.redirect("/profile");
-    }
-  }).catch((err)=>{
-    console.log(err);
-    next(err);
-  });
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      next(err);
+    });
 });
 
 router.post("/meme/:memeId/reviews", loggedInOnly, (req, res, next) => {
- 
-  const { user, comments } = req.body;   
-  Meme.findByIdAndUpdate({_id:req.params.memeId}, {
-    $push: {
-      reviews: {   
-        user: user,
-        comments: comments,
+  const { user, comments } = req.body;
+  Meme.findByIdAndUpdate(
+    { _id: req.params.memeId },
+    {
+      $push: {
+        reviews: {
+          user: user,
+          comments: comments,
+        },
       },
-    },
-  })
+    }
+  )
     .then((meme) => {
-      console.log("successs",meme)
       res.redirect(`/meme/${meme._id}`);
     })
     .catch((error) => {
@@ -101,6 +120,23 @@ router.post("/meme/:memeId/reviews", loggedInOnly, (req, res, next) => {
     });
 });
 
- 
-
-module.exports = router
+router.post("/meme/:memeId/rating", (req, res, next) => {
+  const { user, rating } = req.body;
+  Meme.findByIdAndUpdate(
+    { _id: req.params.memeId },
+    {
+      $push: {
+        rating: {
+          rating: rating,
+        },
+      },
+    }
+  )
+    .then((meme) => {
+      res.redirect(`/meme/${meme._id}`);
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+module.exports = router;

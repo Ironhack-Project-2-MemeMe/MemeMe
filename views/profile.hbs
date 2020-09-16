@@ -1,22 +1,21 @@
-
 <section class="back-arrow">
   <img src="../images/arrow.png" alt="">
   <a href="/">Back to home</a>
 </section>
 
-  <h1>Welcome to your profile, {{ username }}</h1>
-  <h2>Your email: {{ email }}</h2>
-  <h2>Your role: {{ role }}</h2>
+<h1>Welcome to your profile, {{ username }}</h1>
+<h2>Your email: {{ email }}</h2>
 
-  <h2>Your Memes: </h2>
-  {{#each myMemes}}
-    <div>
-      <h1>{{this.title}}</h1>
-     <a href="/meme/{{_id}}"><img src="{{this.imgPath}}" width="200" alt=""> </a> 
-      <form action="/meme/{{_id}}/delete" method="POST">
-        <button type="submit">DELETE THIS MEME 😭</button>
-      </form>
-    </div>
-  {{/each}}
+
+<h2>Your Memes: </h2>
+{{#each myMemes}}
+<div>
+  <h1>{{this.title}}</h1>
+  <a href="/meme/{{_id}}"><img src="{{this.imgPath}}" width="200" alt=""> </a>
+  <form action="/meme/{{_id}}/delete" method="POST">
+    <button type="submit">DELETE THIS MEME 😭</button>
+  </form>
+</div>
+{{/each}}
 
 <a href="/logout">Log Out</a>
