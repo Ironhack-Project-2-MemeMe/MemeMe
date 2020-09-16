@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const { loggedInOnly } = require('./middleware');
+
 const { fileUploader, cloudinary } = require("../config/cloudinary.config.js");
 const Meme = require("../models/Meme.js");
-const User = require('../models/User')
+const User = require('../models/User.js')
 const { loggedInOnly } = require('./middleware');
+
 
 router.get("/meme", (req, res) => { 
   Meme.find().then((memefromDb) => {
@@ -21,7 +22,7 @@ router.get("/meme/:memeId", (req, res) => {
   Meme.findById(id)
     .populate("user")
     .then((memefromDb) => {
-      console.log("memefromDb ====================>",memefromDb)
+      console.log("memefromDb",memefromDb)
      
       res.render('meme', {memes: memefromDb});
     });
@@ -45,7 +46,7 @@ router.post("/meme/add", loggedInOnly, fileUploader.single("image"), (req, res, 
 
   const imgName = req.file ? req.file.originalname : title;
   const imgPath = req.file ? req.file.url : req.body.imageUrl;
-  const imgPublicId = req.file ? req.file.public_id : "1";
+  const imgPublicId = req.file ? req.file.public_id : "xxxx";
   const userId = req.mememeUser._id;
 
   Meme.create({ user: userId, title, description, imgName, imgPath, imgPublicId })
@@ -78,16 +79,11 @@ router.post("/meme/:memeId/delete", loggedInOnly, (req, res, next) => {
     console.log(err);
     next(err);
   });
+});
 
-
-
-
-// COMMENTS ==> Daniela
-router.post("/meme/:memeId/reviews", (req, res, next) => {
+router.post("/meme/:memeId/reviews", loggedInOnly, (req, res, next) => {
  
-  const { user, comments } = req.body; 
-
-  
+  const { user, comments } = req.body;   
   Meme.findByIdAndUpdate({_id:req.params.memeId}, {
     $push: {
       reviews: {   
@@ -97,7 +93,7 @@ router.post("/meme/:memeId/reviews", (req, res, next) => {
     },
   })
     .then((meme) => {
-      console.log("successs==============>",meme)
+      console.log("successs",meme)
       res.redirect(`/meme/${meme._id}`);
     })
     .catch((error) => {
@@ -107,4 +103,4 @@ router.post("/meme/:memeId/reviews", (req, res, next) => {
 
  
 
-module.exports = router;
+module.exports = router

@@ -7,16 +7,15 @@
     </div>
     <input type="text">
 
-    {{#unless isLoggedIn}}
+    
     <a href="/login">LOG IN</a>
  
     <a href="/signup">SIGN UP</a>
-    {{/unless}}
-      
-    {{#if isLoggedIn}}
+     
+ 
     <a href="/meme/add">Add a meme</a>
     <a href="/profile">Profile {{username}}</a>
-    {{/if}}
+ 
    
   </nav>
   <header>
