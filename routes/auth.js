@@ -75,6 +75,7 @@ if (!message){
 
 router.get('/logout', (req, res) => {
   // logout the user using passport
+  console.log("logout!");
   req.logout();
   res.redirect('/');
 });

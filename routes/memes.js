@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { loggedInOnly } = require("./middleware");
+const { loggedInOnly, loggedInMaybe } = require("./middleware");
 const { fileUploader, cloudinary } = require("../config/cloudinary.config.js");
 const Meme = require("../models/Meme.js");
 const User = require("../models/User");
@@ -15,8 +15,10 @@ router.get("/meme/add", loggedInOnly, (req, res, next) => {
   res.render("meme-add");
 });
 
-router.get("/meme/:memeId", (req, res) => {
+router.get("/meme/:memeId", loggedInMaybe, (req, res) => {
   const id = req.params.memeId;
+  const username = req.mememeUser ? req.mememeUser.username : 'Not logged in';
+  console.log('memem',req.mememeUser);
   Meme.findById(id)
     .populate("user")
     .then((memefromDb) => {
@@ -26,7 +28,7 @@ router.get("/meme/:memeId", (req, res) => {
       });
       let avrageRate = parseInt(totalRate / memefromDb.ratings.length);
       let emptyRating = memefromDb.ratings.length === 0 ? true : false;
-      res.render("meme", { memes: memefromDb, avrageRate, emptyRating });
+      res.render("meme", { username, memes: memefromDb, avrageRate, emptyRating });
     });
 });
 
@@ -112,13 +114,13 @@ router.post("/meme/:memeId/delete", loggedInOnly, (req, res, next) => {
 });
 
 router.post("/meme/:memeId/reviews", loggedInOnly, (req, res, next) => {
-  const { user, comments } = req.body;
+  const { comments } = req.body;
   Meme.findByIdAndUpdate(
     { _id: req.params.memeId },
     {
       $push: {
         reviews: {
-          user: user,
+          user: req.mememeUser.username,
           comments: comments,
         },
       },
@@ -133,14 +135,14 @@ router.post("/meme/:memeId/reviews", loggedInOnly, (req, res, next) => {
 });
 
 router.post("/meme/:memeId/rating", loggedInOnly, (req, res, next) => {
-  const { user, rate } = req.body;
+  const { rate } = req.body;
   console.log("rate========>", rate);
   Meme.findByIdAndUpdate(
     { _id: req.params.memeId },
     {
       $push: {
         ratings: {
-          user: user,
+          user: req.mememeUser.username,
           rating: rate,
         },
       },
