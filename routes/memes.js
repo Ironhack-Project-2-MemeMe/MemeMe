@@ -82,22 +82,22 @@ router.post("/meme/:memeId/delete", loggedInOnly, (req, res, next) => {
 
 
 
-// COMMENTS ==> Daniela
-router.post("/meme/:memeId/reviews", (req, res, next) => {
  
-  const { user, comments } = req.body; 
-
-  
-  Meme.findByIdAndUpdate({_id:req.params.memeId}, {
-    $push: {
-      reviews: {   
-        user: user,
-        comments: comments,
+router.post("/meme/:memeId/reviews", loggedInOnly, (req, res, next) => {
+  const { user, comments } = req.body;
+  Meme.findByIdAndUpdate(
+    { _id: req.params.memeId },
+    {
+      $push: {
+        reviews: {
+          user: user,
+          comments: comments,
+        },
       },
-    },
-  })
+    }
+  )
     .then((meme) => {
-      console.log("successs==============>",meme)
+
       res.redirect(`/meme/${meme._id}`);
     })
     .catch((error) => {
