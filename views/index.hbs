@@ -22,6 +22,7 @@
     <a class="btn btn-secondary" href="/profile">Profile {{username}}</a>
     {{/if}}
    </div>
+
   </nav>
   <header>
     <img class="background-img" src="../images/background-meme.png" alt="">
@@ -32,14 +33,12 @@
   
   <div class="imgList">
     {{#each imgList}}
-
       <div class="card item" style="width: 500px">
         <a href="/meme/{{_id}}">
         <img class="card-img-top" width="400" src="{{this.imgPath}}" alt="{{this.title}}"> 
         </a> 
         <h4>{{this.title}}</h4>
       </div>
-
     {{/each}}
   </div>
 </section>
