@@ -25,13 +25,15 @@
 </section>
 
 <section class="img-wrapper">
-  {{#each imgList}}
-    <div>
-      <h1>{{this.title}}</h1>
-     <a href="/meme/{{_id}}"><img src="{{this.imgPath}}" alt="{{this.title}}"> </a> 
+  <div id="imgList">
+    {{#each imgList}}
+      <div>
+        <h1>{{this.title}}</h1>
+        <a href="/meme/{{_id}}"><img width="600" src="{{this.imgPath}}" alt="{{this.title}}"> </a> 
 
-    </div>
-  {{/each}}
+      </div>
+    {{/each}}
+  </div>
   <div class="button-wrapper">
     <button class="see-more">SEE MORE</button>
   </div>

@@ -5,7 +5,6 @@ const { fileUploader, cloudinary } = require("../config/cloudinary.config.js");
 const Meme = require("../models/Meme.js");
 const User = require('../models/User');
 
-
 router.get("/meme", (req, res) => { 
   Meme.find().then((memefromDb) => {
     res.render("meme", { memes: memefromDb });
@@ -24,6 +23,18 @@ router.get("/meme/:memeId", (req, res) => {
       console.log("memefromDb ====================>",memefromDb);
      
       res.render('meme', {memes: memefromDb});
+    });
+});
+
+router.get("/meme/random/:numberOfMemes", (req, res) => {
+  const numberOfMemes = parseInt(req.params.numberOfMemes);
+  Meme.find()
+    .limit(numberOfMemes)
+    .then((memesfromDb) => {
+      for (const memefromDb of memesfromDb) {
+        console.log("memefromDb ====================>",memefromDb)
+      }
+      res.render('meme-list', {layout: false, imgList: memesfromDb});
     });
 });
 
