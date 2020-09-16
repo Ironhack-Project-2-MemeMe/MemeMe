@@ -5,19 +5,19 @@
 
       <img src="../images/Frame 12.png" alt="">
     </div>
-    <input type="text">
+
 
     {{#unless isLoggedIn}}
     <a href="/login">LOG IN</a>
- 
+
     <a href="/signup">SIGN UP</a>
     {{/unless}}
-      
+
     {{#if isLoggedIn}}
     <a href="/meme/add">Add a meme</a>
-    <a href="/profile">Profile {{username}}</a>
+    <a href="/profile">Profile</a>
     {{/if}}
-   
+
   </nav>
   <header>
     <img src="../images/background-meme.png" alt="">
@@ -27,11 +27,11 @@
 <section class="img-wrapper">
   <div id="imgList">
     {{#each imgList}}
-      <div>
-        <h1>{{this.title}}</h1>
-        <a href="/meme/{{_id}}"><img width="600" src="{{this.imgPath}}" alt="{{this.title}}"> </a> 
+    <div>
+      <h1>{{this.title}}</h1>
+      <a href="/meme/{{_id}}"><img width="600" src="{{this.imgPath}}" alt="{{this.title}}"> </a>
 
-      </div>
+    </div>
     {{/each}}
   </div>
   <div class="button-wrapper">

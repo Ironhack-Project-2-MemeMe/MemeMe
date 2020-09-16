@@ -16,32 +16,47 @@
   </a>
 
 </div>
+<section id="rate">
+  <h2>Rating:</h2>
+  {{#if emptyRating }}
+   <p>there is no rating</p>
+   {{else}}
 
- 
-<h2>Comments: </h2>
-{{#if memes.reviews}}
+  <progress id="file" value="{{avrageRate}}" max="10"> {{avrageRate}} </progress>
+  {{avrageRate}}
+  {{/if}}
+
+  <form action="/meme/{{memes._id}}/rating" method="POST">
+    <label for="rate">Rate the Meme </label>
+    <input type="number" min="0" max="10" value="0" name="rate" id="rate">
+    <button type="submit">RATE</button>
+
+  </form>
+
+</section>
+
+<section id="review">
+  <h2>Comments: </h2>
+  {{#if memes.reviews}}
+  {{#each memes.reviews}}
+  <h4>{{user}} commented:</h4>
+  <p>{{this.comments}}</p>
 
 
-{{#each memes.reviews}}
-<h4>{{user}} commented:</h4>
-<p>{{this.comments}}</p>
- 
- 
-{{/each}}
+  {{/each}}
 
-{{else}}
-<p>No comments yet 😕</p>
-{{/if}}
+  {{else}}
+  <p>No comments yet 😕</p>
+  {{/if}}
+  <p>Add your comment</p>
+  <form action="/meme/{{memes._id}}/reviews" method="POST">
+    <label for="user"> Username: </label>
+    <input type="text" name="user" id="user">
+    <label for="comments">Comments:</label>
+    <textarea type="text" name="comments" id="comments"></textarea>
 
-<p>Add your comment</p>
-<form action="/meme/{{memes._id}}/reviews" method="POST">
+    <button type="submit">ADD</button>
 
-  <label for="user"> Username: </label>
-  <input type="text" name="user" id="user">
-  <label for="comments">Comments:</label>
-  <textarea type="text" name="comments" id="comments"></textarea>
+  </form>
 
-  <button type="submit">ADD</button>
-
-</form>
-
+</section>
