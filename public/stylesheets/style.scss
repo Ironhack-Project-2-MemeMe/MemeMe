@@ -86,8 +86,11 @@ nav {
     text-align: left;
     padding: 10px;
     margin: 10px;
-  
    }
+
+  .card-img-top{
+    padding-bottom: 10px;
+  }
 
 
 /* This is the css for the profile*/
@@ -149,8 +152,8 @@ color:  #36FFE1;
 
 .signup-login-frame {
   background: #343a40;
-  height: 300px;
-  width: 40%;
+  height: 250px;
+  width: 30%;
   margin: 0 auto;
   padding: 20px;
   display: flex;
@@ -161,8 +164,8 @@ color:  #36FFE1;
 .signup-login-frame sign-up-group {
   display: flex;
   flex-direction: column;
-  width: 50%;
-  padding: 20px;
+  width: 80%;
+  padding: 20px 0;
 }
 
 .form-control {
@@ -170,4 +173,11 @@ color:  #36FFE1;
   background-color: black;
   border-color: black;
   margin: 15px 0;
+}
+
+.no-account-yet{
+  color: #36FFE1;
+  padding-left: 10px;
+  text-decoration: none;
+  text-align: center;
 }

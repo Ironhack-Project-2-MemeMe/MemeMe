@@ -6,30 +6,32 @@
       <img src="../images/MemeMe.png" alt="Logo-name">
       </a>
     </div>
-   
-    <div>
-      <a class="btn btn-outline-secondary" href="/meme/add">Add a meme</a>
-      <a class="btn btn-secondary" href="/logout">LOG OUT</a>
-   </div>
-
   </nav>
 </section>
 
 
-<h1>Login 🤗</h1>
+<div class="headline-signup-login">
+<h2>Log in</h2>
+</div>
 
-<form action="/login" method="POST">
+<section class="signup-login-frame">
+  <form class="sign-up-group" action="/login" method="POST">
 
-  <label for="username">Username:</label>
-  <input type="text" name="username" id="username">
+   
+    <input class="form-control" type="text" name="username" id="username" placeholder="Username">
 
-  <label for="password">Password:</label>
-  <input type="password" name="password">
+    <input class="form-control" type="password" name="password" placeholder="Password">
 
-  <button type="submit">Log In 😉</button>
+    {{#if message}}
+    <p style="color: red">{{message}}</p>
+    {{/if}}
+    <div>
+    <button class="btn btn-secondary" type="submit">Log In</button>
+    <a class="no-account-yet" href="/signup">No account yet?</a>
+    </div>
 </form>
 
 
-{{#if message}}
-  <p style="color: red">{{message}}</p>
-{{/if}}
+
+
+</section>
