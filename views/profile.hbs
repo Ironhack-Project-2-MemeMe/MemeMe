@@ -1,21 +1,47 @@
-<section class="back-arrow">
-  <img src="../images/arrow.png" alt="">
-  <a href="/">Back to home</a>
+<section class="nav-wrapper">
+  <nav>
+    <div class="logoWrapper" >
+      <a href="/">
+      <img src="../images/Frame 12.png" alt="Logo">
+      <img src="../images/MemeMe.png" alt="Logo-name">
+      </a>
+    </div>
+   
+    <div>
+      <a class="btn btn-outline-secondary" href="/meme/add">Add a meme</a>
+      <a class="btn btn-secondary" href="/logout">LOG OUT</a>
+   </div>
+
+  </nav>
 </section>
 
-  <h1>Welcome to your profile, {{ username }}</h1>
-  <h2>Your email: {{ email }}</h2>
-  <h2>Your role: {{ role }}</h2>
+<div class="welcome-user">
+<h1>Welcome to your profile, {{ username }}</h1>
+<p>Your email: {{ email }}</p>
+</div>
 
-  <h2>Your Memes: </h2>
+
+
+<div class="title-of-my-MemeList">
+  <h3>Your Memes: </h3>
+</div>
+
+  <div class="my-MemeList">
   {{#each myMemes}}
-    <div>
-      <h1>{{this.title}}</h1>
-     <a href="/meme/{{_id}}"><img src="{{this.imgPath}}" width="200" alt=""> </a> 
+    
+    <div class="card item profile-card" style="width: 400px">
+      
+     <a href="/meme/{{_id}}"><img src="{{this.imgPath}}" width="400" alt=""> 
+     </a> 
+     <div id="title-myMeme">
+     <h4>{{this.title}}</h4>
+     </div>
+     
+
       <form action="/meme/{{_id}}/delete" method="POST">
-        <button type="submit">DELETE THIS MEME 😭</button>
+        <button class="btn btn-danger card-link" type="submit">DELETE THIS MEME 😭</button>
       </form>
     </div>
   {{/each}}
+  </div>
 
-<a href="/logout">Log Out</a>

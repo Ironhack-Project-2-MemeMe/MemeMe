@@ -2,7 +2,7 @@ body {
   color: white;
   background-color: black;
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  font-family: 'Life Savers', cursive; }
 
 h1 {
   color: white; }
@@ -75,8 +75,46 @@ nav {
 
 .card {
   background-color: #343a40;
-  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Life Savers', cursive;
+  text-align: left;
+  padding: 10px;
+  margin: 10px; }
+
+/* This is the css for the profile*/
+.welcome-user {
   text-align: center;
+  margin: 40px 0 100px 0; }
+
+.welcome-user h1 {
+  color: #36FFE1; }
+
+.my-MemeList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 2fr));
+  grid-gap: 5px;
+  align-items: stretch; }
+
+.my-MemeList div {
+  box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+  max-width: 100%; }
+
+.title-of-my-MemeList {
+  color: #36FFE1;
+  margin: 80px 0 40px 0; }
+
+.btn-danger {
+  border-color: #F7A61E;
+  background-color: #F7A61E;
+  color: darkred; }
+
+#title-myMeme {
+  color: #36FFE1;
+  margin: 10px 0 10px 0; }
+
+.profile-card {
+  background-color: #000000;
+  font-family: 'Life Savers', cursive;
+  text-align: left;
   padding: 10px;
   margin: 10px; }
 
