@@ -72,8 +72,7 @@ nav {
   padding: 1em; }
 
 .shareAndrate img {
-  width: 45px;
-  margin-left: -5.5em; }
+  width: 45px; }
 
 .shareAndrate h2 {
   color: #36ffe1;
@@ -118,6 +117,9 @@ nav {
   margin-right: auto;
   margin-left: auto;
   width: 35%; }
+
+.memeImg {
+  width: 100%; }
 
 .title {
   font-size: 25pt;

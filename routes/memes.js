@@ -4,12 +4,7 @@ const { loggedInOnly, loggedInMaybe } = require("./middleware");
 const { fileUploader, cloudinary } = require("../config/cloudinary.config.js");
 const Meme = require("../models/Meme.js");
 const User = require("../models/User");
-
-router.get("/meme", (req, res) => {
-  Meme.find().then((memefromDb) => {
-    res.render("meme", { memes: memefromDb });
-  });
-});
+const { selectRandomPics } = require("./helper");
 
 router.get("/meme/add", loggedInOnly, (req, res, next) => {
   res.render("meme-add");
@@ -35,9 +30,8 @@ router.get("/meme/:memeId", loggedInMaybe, (req, res) => {
 router.get("/meme/random/:numberOfMemes", (req, res) => {
   const numberOfMemes = parseInt(req.params.numberOfMemes);
   Meme.find()
-    .limit(numberOfMemes)
     .then((memesfromDb) => {
-      res.render("meme-list", { layout: false, imgList: memesfromDb });
+      res.render("meme-list", { layout: false, imgList: selectRandomPics(memesfromDb, 10) });
     });
 });
 
