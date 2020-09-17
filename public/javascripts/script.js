@@ -17,7 +17,28 @@ function getRandomMemes(numberOfMemes) {
       const resp = this.response;
       var el = document.querySelector('.imgList');
       el.insertAdjacentHTML('beforeend', resp);
-      waterfall('.imgList');
+
+
+      // i found this to check if all images are loaded:
+      const incrementCounter = () => {
+        counter++;
+        if ( counter >= len ) {
+            // do the waterfall magic
+            waterfall('.imgList');
+        }
+      };
+
+      var imgs = document.images,
+          len = imgs.length,
+          counter = 0;
+
+      [].forEach.call( imgs, function( img ) {
+          if(img.complete)
+            incrementCounter();
+          else
+            img.addEventListener( 'load', incrementCounter, false );
+      } );
+      
     } else {
       // We reached our target server, but it returned an error
       console.log('error status while loading more memes: ', this.status);
