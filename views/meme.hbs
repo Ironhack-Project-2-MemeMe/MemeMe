@@ -1,29 +1,33 @@
-<section class="back-arrow">
-  <img src="../images/arrow.png" alt="">
-  <a href="/">Back to home</a>
+<section class="nav-wrapper">
+  <nav>
+    <a href="/">
+      <img src="../images/Frame 12.png" alt="Logo">
+      <img src="../images/MemeMe.png" alt="Logo-name">
+    </a>
+  </nav>
 </section>
-
 {{#each memes}}
-<div>
-  <h1>{{this.title}}</h1>
-  <h2>{{this.description}}</h2>
-  <img src=" {{this.imgPath}}" alt="">
+<div id='memeWrapper'>
+  <h1 class="title">{{this.title}}</h1>
+  <h2 class="description">{{this.description}}</h2>
+  <img class="memeImg" src=" {{this.imgPath}}" alt="">
 </div>
 {{/each}}
-<div class="share">
+<div class="shareAndrate">
   <a href="https://www.facebook.com/sharer/sharer.php?u=example.org" target="_blank">
     Share on <img src="../images/fb.png" alt="Facebook">
   </a>
 
-</div>
-<section id="rate">
-  <h2>Rating:</h2>
+ 
+<div class="rate">
+   <h3>Rating:</h3>
   {{#if emptyRating }}
-   <p>there is no rating</p>
-   {{else}}
+  <p>there is no rating</p>
+  {{else}}
 
-  <progress id="file" value="{{avrageRate}}" max="10"> {{avrageRate}} </progress>
-  {{avrageRate}}
+  <progress id="file" value="{{avrageRate}}" max="10">{{avrageRate}} </progress> 
+  <span class="rateValue">{{avrageRate}}</span>
+  </div>
   {{/if}}
 
   <form action="/meme/{{memes._id}}/rating" method="POST">
@@ -33,7 +37,7 @@
 
   </form>
 
-</section>
+</div>
 
 <section id="review">
   <h2>Comments: </h2>

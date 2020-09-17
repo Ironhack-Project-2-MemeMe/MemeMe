@@ -136,7 +136,6 @@ router.post("/meme/:memeId/reviews", loggedInOnly, (req, res, next) => {
 
 router.post("/meme/:memeId/rating", loggedInOnly, (req, res, next) => {
   const { rate } = req.body;
-  console.log("rate========>", rate);
   Meme.findByIdAndUpdate(
     { _id: req.params.memeId },
     {

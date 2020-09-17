@@ -2,7 +2,7 @@ body {
   color: white;
   background-color: black;
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  font-family: "Life Savers", cursive; }
 
 h1 {
   color: white; }
@@ -16,19 +16,19 @@ nav {
   background-color: #04473d;
   align-items: baseline;
   justify-content: space-between;
-  padding: 0  10px 0 0; }
+  padding: 0 10px 0 0; }
 
 .search-field {
   width: 40%; }
 
 .btn-outline-secondary {
-  color: #36FFE1;
+  color: #36ffe1;
   border-color: white; }
 
 .btn-secondary {
-  color: #0B6356;
-  border-color: #36FFE1;
-  background-color: #36FFE1; }
+  color: #0b6356;
+  border-color: #36ffe1;
+  background-color: #36ffe1; }
 
 .background-img {
   width: 100%; }
@@ -56,7 +56,15 @@ nav {
   width: 20px;
   padding-right: 3px; }
 
-.share img {
+.shareAndrate {
+  display: flex;
+  margin-left: 17em;
+  margin-right: 17em;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline; }
+
+.shareAndrate img {
   width: 30px; }
 
 .img-wrapper {
@@ -79,5 +87,33 @@ nav {
   text-align: center;
   padding: 10px;
   margin: 10px; }
+
+#memeWrapper {
+  margin-right: auto;
+  margin-left: auto;
+  width: 20%; }
+
+.title {
+  font-size: 35pt;
+  color: #36ffe1; }
+
+.description {
+  font-size: 30pt;
+  color: #36ffe1; }
+
+#file {
+  height: 50px;
+  width: 130px;
+  margin-left: 1em;
+  margin-bottom: 1em;
+  margin-top: -0.5em; }
+
+.rate {
+  display: flex;
+  align-self: baseline; }
+
+.rateValue {
+  padding: 1em;
+  margin-top: -0.5em; }
 
 /*# sourceMappingURL=style.css.map */
