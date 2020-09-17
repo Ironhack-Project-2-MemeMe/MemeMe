@@ -226,6 +226,9 @@ textarea {
   padding: 10px;
   margin: 10px; }
 
+.card-img-top {
+  padding-bottom: 10px; }
+
 .welcome-user {
   text-align: center;
   margin: 40px 0 100px 0; }
@@ -262,5 +265,38 @@ textarea {
   text-align: left;
   padding: 10px;
   margin: 10px; }
+
+/* This is the css for the signup*/
+.headline-signup-login {
+  text-align: center;
+  margin: 60px 0 60px 0; }
+
+.signup-login-frame {
+  background: #343a40;
+  height: 250px;
+  width: 30%;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.signup-login-frame sign-up-group {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  padding: 20px 0; }
+
+.form-control {
+  color: #36FFE1;
+  background-color: black;
+  border-color: black;
+  margin: 15px 0; }
+
+.no-account-yet {
+  color: #36FFE1;
+  padding-left: 10px;
+  text-decoration: none;
+  text-align: center; }
 
 /*# sourceMappingURL=style.css.map */

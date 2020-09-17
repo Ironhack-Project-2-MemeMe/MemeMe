@@ -1,17 +1,37 @@
-<h1>Login 🤗</h1>
+<section class="nav-wrapper">
+  <nav>
+    <div class="logoWrapper" >
+      <a href="/">
+      <img src="../images/Frame 12.png" alt="Logo">
+      <img src="../images/MemeMe.png" alt="Logo-name">
+      </a>
+    </div>
+  </nav>
+</section>
 
-<form action="/login" method="POST">
 
-  <label for="username">Username:</label>
-  <input type="text" name="username" id="username">
+<div class="headline-signup-login">
+<h2>Log in</h2>
+</div>
 
-  <label for="password">Password:</label>
-  <input type="password" name="password">
+<section class="signup-login-frame">
+  <form class="sign-up-group" action="/login" method="POST">
 
-  <button type="submit">Log In 😉</button>
+   
+    <input class="form-control" type="text" name="username" id="username" placeholder="Username">
+
+    <input class="form-control" type="password" name="password" placeholder="Password">
+
+    {{#if message}}
+    <p style="color: red">{{message}}</p>
+    {{/if}}
+    <div>
+    <button class="btn btn-secondary" type="submit">Log In</button>
+    <a class="no-account-yet" href="/signup">No account yet?</a>
+    </div>
 </form>
 
 
-{{#if message}}
-  <p style="color: red">{{message}}</p>
-{{/if}}
+
+
+</section>
