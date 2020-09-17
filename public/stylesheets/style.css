@@ -301,4 +301,27 @@ textarea {
   text-decoration: none;
   text-align: center; }
 
+/* meme upload design*/
+.upload-details {
+  display: flex;
+  justify-content: center;
+  margin: 60px 0; }
+
+#add-meme {
+  border-color: #04473d; }
+
+.upload-methods {
+  margin: 50px 0; }
+
+#upload-via-file {
+  margin: 15px 0;
+  color: #36FFE1; }
+
+#upload-choice {
+  text-align: center;
+  padding: 15px 0; }
+
+#add-meme-btn {
+  margin-top: 40px; }
+
 /*# sourceMappingURL=style.css.map */

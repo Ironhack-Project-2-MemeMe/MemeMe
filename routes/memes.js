@@ -11,9 +11,9 @@ router.get("/meme/add", loggedInOnly, (req, res, next) => {
 });
 
 router.get("/meme/:memeId", loggedInMaybe, (req, res) => {
+  
   const id = req.params.memeId;
   const username = req.mememeUser ? req.mememeUser.username : 'Not logged in';
-  console.log('memem',req.mememeUser);
   Meme.findById(id)
     .populate("user")
     .then((memefromDb) => {
@@ -35,6 +35,7 @@ router.get("/meme/random/:numberOfMemes", (req, res) => {
     });
 });
 
+// TODO is this dead code?
 router.post("/meme", (req, res) => {
   const { title, description, imageUrl } = req.body;
   Meme.create({ title, description, imgName, imgPath, imgPublicId })
@@ -58,6 +59,11 @@ router.post(
     const imgPublicId = req.file ? req.file.public_id : "1";
     const userId = req.mememeUser._id;
 
+    if(!imgPath) {
+      res.redirect("/meme/add");
+      return;
+    }
+
     Meme.create({
       user: userId,
       title,
@@ -67,7 +73,7 @@ router.post(
       imgPublicId,
     })
       .then((meme) => {
-        res.redirect("/");
+        res.redirect(`/meme/${meme._id}`);
       })
       .catch((err) => {
         next(err);
