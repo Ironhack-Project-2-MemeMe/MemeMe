@@ -1,38 +1,62 @@
-<section class="back-arrow">
-  <img src="../images/arrow.png" alt="">
-  <a href="/">Back to home</a>
+<section class="nav-wrapper">
+  <nav>
+    <div class="logoWrapper" >
+      <a href="/">
+      <img src="../images/Frame 12.png" alt="Logo">
+      <img src="../images/MemeMe.png" alt="Logo-name">
+      </a>
+    </div>
+     <div>
+       <a class="btn btn-secondary" href="/profile">Profile {{username}}</a>
+   </div>
+  </nav>
 </section>
 
 
-  <div class="logoWrapper">
-
-      <img src="../images/Frame 12.png" alt="Logo">
-      <img src="../images/MemeMe.png" alt="Logo-name">
-    </div>
-
-<div id="addWrapper">
-  <form action="/meme/add" method="POST" enctype="multipart/form-data">
-
-    <div>
-       
-      <input type="file" name="image" id="img"  />
-     
-      <p>OR</p>
-      <input type="url" name="imageUrl" id="image" placeholder="Paste Image URL">
-    </div>
-
-    <input type="text" name="title" id="title" placeholder="Title: ">
-    <input type="text" name="description" id="description" placeholder="Description">
-    <button type="submit">Add the Meme</button>
-  </form>
+<div class="headline-signup-login">
+<h2>Add a Meme</h2>
 </div>
 
 
-<section class="footer-wrapper">
-  <footer>
-    <a href="">(c)2020 MEMEME</a>
-    <a href="">ABOUT</a>
-    <a href="">PRIVACY</a>
-    <a href="">TERMS</a>
-  </footer>
-</section>
+<Section class="upload-details">
+  <form action="/meme/add" method="POST" enctype="multipart/form-data">
+
+    <div class="row">
+      <div class="col">
+        <input class="form-control" id="add-meme" type="text" name="title" id="title" placeholder="Title ">
+       </div>
+       <div class="col">
+       <input class="form-control" id="add-meme" dtype="text" name="description" id="description" placeholder="Description">
+       </div>
+    </div>
+
+<div class="upload-methods">
+    <div id="upload-via-file">
+      <input onChange="document.getElementById('file-name').innerText = this.value.replace(/^.*[\\\/]/, '');" style="display: none;" type="file" name="image" id="img"/>
+      <button onClick="document.getElementById('img').click(); return false;">Browse Files</button>
+      <span id="file-name">No File Selected</span>
+    </div>
+      
+      <p id="upload-choice">OR</p>
+
+    <div>
+      <input class="form-control" id="add-meme" type="url" name="imageUrl" id="image" placeholder="Paste Image URL">
+    </div>
+</div>
+
+    <div id="add-meme-btn">
+      <button class="btn btn-secondary" type="submit">Add the Meme</button>
+    </div>
+  </form>
+
+
+
+
+
+
+</Section>
+
+
+
+
+
