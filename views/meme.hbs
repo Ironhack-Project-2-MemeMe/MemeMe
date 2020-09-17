@@ -1,58 +1,73 @@
-<section class="back-arrow">
-  <img src="../images/arrow.png" alt="">
-  <a href="/">Back to home</a>
+<section class="nav-wrapper">
+  <nav>
+    <a href="/">
+      <img src="../images/Frame 12.png" alt="Logo">
+      <img src="../images/MemeMe.png" alt="Logo-name">
+    </a>
+     <a class="btn btn-secondary" href="/profile">Profile {{username}}</a>
+  </nav>
 </section>
-
 {{#each memes}}
-<div>
-  <h1>{{this.title}}</h1>
-  <h2>{{this.description}}</h2>
-  <img src=" {{this.imgPath}}" alt="">
+<div id='memeWrapper'>
+  <h1 class="title">{{this.title}}</h1>
+  <h2 class="description">{{this.description}}</h2>
+  <img class="memeImg" src=" {{this.imgPath}}" alt="">
 </div>
 {{/each}}
-<div class="share">
+<div class="shareAndrate">
+<h2>Share on</h2>
   <a href="https://www.facebook.com/sharer/sharer.php?u=example.org" target="_blank">
-    Share on <img src="../images/fb.png" alt="Facebook">
+    <img src="../images/fb.png" alt="Facebook">
   </a>
 
+
+  <div class="rate">
+    <h2>Rating: </h2>
+    {{#if emptyRating }}
+    <p class="noRate">there is no rating</p>
+    {{else}}
+
+    <progress id="file" value="{{avrageRate}}" max="10">{{avrageRate}} </progress>
+    <span class="rateValue">{{avrageRate}}</span>
+
+
+    {{/if}}
+    <div class='rateForm'>
+      <form action="/meme/{{memes._id}}/rating" method="POST">
+        <label for="rate">Rate the Meme </label>
+        <input type="number" min="0" max="10" value="0" name="rate" id="rate">
+        <button class="ratebtn" type="submit">RATE</button>
+      </form>
+    </div>
+  </div>
 </div>
-<section id="rate">
-  <h2>Rating:</h2>
-  {{#if emptyRating }}
-   <p>there is no rating</p>
-   {{else}}
 
-  <progress id="file" value="{{avrageRate}}" max="10"> {{avrageRate}} </progress>
-  {{avrageRate}}
-  {{/if}}
+<div id="review">
 
-  <form action="/meme/{{memes._id}}/rating" method="POST">
-    <label for="rate">Rate the Meme </label>
-    <input type="number" min="0" max="10" value="0" name="rate" id="rate">
-    <button type="submit">RATE</button>
-
-  </form>
-
-</section>
-
-<section id="review">
-  <h2>Comments: </h2>
+  <h2 class="commentH2">Comments: </h2>
+    <div class='comments'>
   {{#if memes.reviews}}
   {{#each memes.reviews}}
-  <h4>{{user}} commented:</h4>
-  <p>{{this.comments}}</p>
+  <h4 class="the-user">{{user}} commented:</h4>
+  <p class="the-comments">{{this.comments}}</p>
 
 
   {{/each}}
-
+</div>
   {{else}}
   <p>No comments yet 😕</p>
   {{/if}}
-  <p>Add your comment</p>
+
+  <div class="commentForm">
+ 
+  <div class="comment-area">
   <form action="/meme/{{memes._id}}/reviews" method="POST">
-    <label for="user"> Username: {{username}}</label>
-    <label for="comments">Comments:</label>
-    <textarea type="text" name="comments" id="comments"></textarea>
-    <button type="submit">ADD</button>
+  <div class="comment-add"> 
+    <label for="user"> {{username}}, </label>
+    <label for="comments">write your comment here: </label>
+    </div>
+    <textarea   type="text" name="comments" id="comments"></textarea>
+    <button class="add-com" type="submit">ADD</button>
   </form>
-</section>
+
+ </div>

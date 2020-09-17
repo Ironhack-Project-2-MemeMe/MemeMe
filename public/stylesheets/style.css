@@ -2,7 +2,7 @@ body {
   color: white;
   background-color: black;
   padding: 50px;
-  font-family: 'Life Savers', cursive; }
+  font-family: "Life Savers", cursive; }
 
 h1 {
   color: white; }
@@ -16,48 +16,22 @@ nav {
   background-color: #04473d;
   align-items: baseline;
   justify-content: space-between;
-  padding: 0  10px 0 0; }
+  padding: 0 10px 0 0; }
 
 .search-field {
   width: 40%; }
 
 .btn-outline-secondary {
-  color: #36FFE1;
+  color: #36ffe1;
   border-color: white; }
 
 .btn-secondary {
-  color: #0B6356;
-  border-color: #36FFE1;
-  background-color: #36FFE1; }
+  color: #0b6356;
+  border-color: #36ffe1;
+  background-color: #36ffe1; }
 
 .background-img {
   width: 100%; }
-
-.button-wrapper {
-  padding-top: 3em;
-  padding-bottom: 3em;
-  display: flex;
-  justify-content: center;
-  align-items: center; }
-
-#addWrapper {
-  padding-top: 3em;
-  padding-bottom: 3em;
-  display: flex;
-  justify-content: center;
-  align-items: center; }
-
-.logo-add {
-  display: flex;
-  justify-content: center;
-  align-items: center; }
-
-.back-arrow img {
-  width: 20px;
-  padding-right: 3px; }
-
-.share img {
-  width: 30px; }
 
 .img-wrapper {
   position: relative;
@@ -75,7 +49,179 @@ nav {
 
 .card {
   background-color: #343a40;
-  font-family: 'Life Savers', cursive;
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+  text-align: center;
+  padding: 10px;
+  margin: 10px; }
+
+/* This is the css for the meme page*/
+.button-wrapper {
+  padding-top: 3em;
+  padding-bottom: 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.shareAndrate {
+  display: flex;
+  margin-left: 7em;
+  margin-right: 7em;
+  text-align: center;
+  justify-content: space-evenly;
+  align-items: baseline;
+  padding: 1em; }
+
+.shareAndrate img {
+  width: 45px;
+  margin-left: -5.5em; }
+
+.shareAndrate h2 {
+  color: #36ffe1;
+  font-size: 22pt;
+  display: flex;
+  align-items: baseline; }
+
+.rateForm {
+  color: #36ffe1;
+  font-size: 18pt; }
+
+.rateForm input {
+  background-color: #36ffe1;
+  text-align: center; }
+
+.rateForm label {
+  margin-left: 7em; }
+
+.rateForm button {
+  background-color: #3b5998;
+  border: none;
+  text-align: center;
+  width: 5em; }
+
+.noRate {
+  padding: 1em;
+  margin-top: -1em;
+  margin-right: 2em;
+  margin-left: -0.5em;
+  font-size: 16pt;
+  color: #36ffe1; }
+
+.ratebtn {
+  font-size: 15pt;
+  height: 55px;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 50%; }
+
+#memeWrapper {
+  margin-top: -1.4em;
+  margin-right: auto;
+  margin-left: auto;
+  width: 35%; }
+
+.title {
+  font-size: 25pt;
+  color: #36ffe1; }
+
+.description {
+  font-size: 20pt;
+  color: whitesmoke;
+  width: 20em;
+  color: #04473d; }
+
+#file {
+  height: 50px;
+  width: 130px;
+  margin-left: 1em;
+  margin-bottom: 1em;
+  margin-top: -0.5em; }
+
+.rate {
+  display: flex;
+  align-self: baseline;
+  margin-left: 20em; }
+
+.rate input {
+  width: 2em; }
+
+.rateValue {
+  padding: 1em;
+  margin-top: -0.5em;
+  font-size: 17pt;
+  color: #36ffe1; }
+
+.commentH2 {
+  display: flex;
+  justify-content: center;
+  padding: 0.5em;
+  font-size: 25pt;
+  padding-top: 1em; }
+
+.comments {
+  box-sizing: border-box;
+  border: 1.5px solid #013038;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 25em;
+  margin-right: 25em;
+  color: #04473d;
+  background-color: #010607; }
+
+.the-comments {
+  border: 1px solid #013038;
+  width: 650px;
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #36ffe1;
+  background-color: #000607;
+  font-size: 20pt; }
+
+.the-user {
+  font-size: 22pt;
+  font-style: italic; }
+
+.commentForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.comment-add {
+  display: flex;
+  justify-content: center;
+  padding: 1em;
+  font-size: 20pt; }
+
+textarea {
+  box-sizing: border-box;
+  border: 3px solid #013038;
+  font-size: 14px;
+  margin-top: -2em;
+  margin-bottom: 2em;
+  display: block;
+  border-radius: 13px;
+  height: 125px;
+  width: 500px;
+  background-color: #000607;
+  color: #36ffe1;
+  font-size: 15pt; }
+
+.add-com {
+  background-color: #04473d;
+  font-size: 20pt;
+  height: 55px;
+  width: 115px;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 50%;
+  margin-left: 7em; }
+
+/* This is the css for the profile*/
+.card {
+  background-color: #343a40;
+  font-family: "Life Savers", cursive;
   text-align: left;
   padding: 10px;
   margin: 10px; }
@@ -83,13 +229,12 @@ nav {
 .card-img-top {
   padding-bottom: 10px; }
 
-/* This is the css for the profile*/
 .welcome-user {
   text-align: center;
   margin: 40px 0 100px 0; }
 
 .welcome-user h1 {
-  color: #36FFE1; }
+  color: #36ffe1; }
 
 .my-MemeList {
   display: grid;
@@ -102,21 +247,21 @@ nav {
   max-width: 100%; }
 
 .title-of-my-MemeList {
-  color: #36FFE1;
+  color: #36ffe1;
   margin: 80px 0 40px 0; }
 
 .btn-danger {
-  border-color: #F7A61E;
-  background-color: #F7A61E;
+  border-color: #f7a61e;
+  background-color: #f7a61e;
   color: darkred; }
 
 #title-myMeme {
-  color: #36FFE1;
+  color: #36ffe1;
   margin: 10px 0 10px 0; }
 
 .profile-card {
   background-color: #000000;
-  font-family: 'Life Savers', cursive;
+  font-family: "Life Savers", cursive;
   text-align: left;
   padding: 10px;
   margin: 10px; }
